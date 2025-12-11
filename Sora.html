@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Y O R A • 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap');
+        
+        * {margin:0;padding:0;box-sizing:border-box;}
+        body,html {height:100%;background:#000;color:#00ff41;font-family:'Courier New;overflow:hidden;}
+        canvas {position:fixed;top:0;left:0;z-index:1;}
+        
+        .container {
+            position:relative;
+            z-index:10;
+            text-align:center;
+            padding-top:15vh;
+        }
+        h1 {
+            font-family:'Orbitron',sans-serif;
+            font-size:clamp(3rem, 10vw, 10rem);
+            letter-spacing:15px;
+            text-shadow:0 0 40px #00ff41;
+            animation:glitch 3s infinite;
+        }
+        h2 {
+            font-size:clamp(1.5rem, 5vw, 4rem);
+            margin:20px 0;
+        }
+        .blink {
+            animation:blink 1s infinite;
+            font-size:clamp(2rem, 6vw, 5rem);
+            color:#00ff41;
+        }
+        p {
+            font-size:1.5rem;
+            opacity:0.9;
+        }
+        @keyframes glitch {
+            0%,100% {text-shadow:6px 0 #ff00ff,-6px 0 #00ffff;}
+            50% {text-shadow:-6px 0 #ff00ff,6px 0 #00ffff;}
+        }
+        @keyframes blink {
+            50% {opacity:0;}
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="container">
+    <h1>Y O R A</h1>
+    <h2>Website ini telah diambil alih oleh YORA !</h2>
+    <h2 class="blink">PERBAIKI KERENTANAN NYA!</h2>
+    <p>Indonesian Defacer • 2025</p>
+    <p>t.me/YORA_OFFICIAL</p>
+    <p>Greets: All Indonesian Hacker • My Cat • My Coffee ☕</p>
+</div>
+
+<script>
+// Matrix Rain Full
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const katakana = 'ヨラアィウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラ';
+const latin = 'YORAABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
+const alphabet = katakana + latin + nums;
+
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for(let i = 0; i < columns; i++) drops[i] = 1;
+
+function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#00ff41';
+    ctx.font = fontSize + 'px monospace';
+
+    for(let i = 0; i < drops.length; i++) {
+        const text = alphabet[Math.floor(Math.random() * alphabet.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+        drops[i]++;
+    }
+}
+setInterval(draw, 35);
+
+// Auto play music (bypass block)
+setTimeout(() => {
+    const audio = new Audio('https://files.catbox.moe/8v4r1n.mp3');
+    audio.loop = true;
+    audio.volume = 0.4;
+    audio.play().catch(() => {});
+}, 1000);
+</script>
+
+</body>
+</html>
